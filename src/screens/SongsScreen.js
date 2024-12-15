@@ -35,7 +35,7 @@ const SongsScreen = () => {
   const handleSearch = async () => {
     const options = {
       method: 'GET',
-      url: 'https://shazam.p.rapidapi.com/search',
+      url: `https://${process.env.SHAZAM_HOST}/search`,
       params: {
         term: searchText,
         locale: 'tr-TR',
@@ -43,8 +43,8 @@ const SongsScreen = () => {
         limit: '5',
       },
       headers: {
-        'x-rapidapi-key': '0b0caf0281mshb38311d44ea7344p14c303jsn4396613a5ebc',
-        'x-rapidapi-host': 'shazam.p.rapidapi.com',
+        'x-rapidapi-key': process.env.SHAZAM_KEY,
+        'x-rapidapi-host': process.env.SHAZAM_HOST,
       },
     };
 
@@ -181,7 +181,12 @@ const SongsScreen = () => {
             </Pressable>
           </View>
 
-          <View style={{marginHorizontal: 10, marginVertical: 10, alignItems:"center"}}>
+          <View
+            style={{
+              marginHorizontal: 10,
+              marginVertical: 10,
+              alignItems: 'center',
+            }}>
             <Text style={{fontSize: 16, color: 'white', fontWeight: 'bold'}}>
               Search Songs
             </Text>
